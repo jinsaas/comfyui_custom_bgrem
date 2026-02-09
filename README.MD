@@ -1,20 +1,20 @@
-####bgrem V.2.25####
-이 프로젝트는 comfyui092 이후 및 comfyui11.1에서도 동작합니다.
-처리에 그래픽카드를 사용하지 않게 짰으므로, CPU기동이나 AMD에서도 무리없을 가능성이 높습니다.
+####bgrem V.2.25####  
+이 프로젝트는 comfyui092 이후 및 comfyui11.1에서도 동작합니다.  
+처리에 그래픽카드를 사용하지 않게 짰으므로, CPU기동이나 AMD에서도 무리없을 가능성이 높습니다.  
 
-####변경사항####
-타일링 채우기 기능의 버그를 정리했습니다. 
-간격 오버하는 상황시 자동으로 잘라내어 픽셀 불일치 오류 가능성이 줄었습니다.
+####변경사항####  
+타일링 채우기 기능의 버그를 정리했습니다.   
+간격 오버하는 상황시 자동으로 잘라내어 픽셀 불일치 오류 가능성이 줄었습니다.  
 
-####bgrem은 다음 원칙을 기반으로 설계되었습니다####
-• 환경 안정성 최우선
-• 결정성 100% (Portable 환경에서도 동일 결과)
-• 유지보수 가능한 구조
+####bgrem은 다음 원칙을 기반으로 설계되었습니다####  
+• 환경 안정성 최우선  
+• 결정성 100% (Portable 환경에서도 동일 결과)  
+• 유지보수 가능한 구조  
 •Stable Diffusion 모델 기반을 사용하지 않는 ComfyUI Standalone 환경에서의 
- 안정성을 무너뜨리지 않는 형태를 지향합니다.
+ 안정성을 무너뜨리지 않는 형태를 지향합니다.  
 
  
-# Original U²Net implementation:
+# Original U²Net implementation:  
  https://github.com/xuebinqin/U-2-Net
 # Paper: U²-Net: Going Deeper with Nested U-Structure for Salient Object Detection (Pattern Recognition, 2020)
 ----------
@@ -42,36 +42,36 @@
 https://huggingface.co/ashhr/comfyui_custom_bgrem_kr/blob/main/MODEL/u2net.safetensors
 https://huggingface.co/ashhr/comfyui_custom_bgrem_kr/blob/main/MODEL/u2net_human_seg.safetensors
 
-#----------------
-#의존성 필수 리스트
-#----------------
-numpy
-pillow
-opencv-python
-torch
-torchvision
-lazy_loader
-tifffile
-scipy
-scikit-image
-#----------------
-#----------------------------------------------------
+#----------------  
+#의존성 필수 리스트  
+#----------------  
+numpy  
+pillow  
+opencv-python  
+torch  
+torchvision  
+lazy_loader  
+tifffile  
+scipy  
+scikit-image  
+#----------------  
+#----------------------------------------------------  
 
-python.exe -m pip install --no-deps numpy(포터블은 할 필요가 없음.)
-python.exe -m pip install --no-deps pillow
-python.exe -m pip install --no-deps opencv-python
-python.exe -m pip install --no-deps torch
-python.exe -m pip install --no-deps torchvision
-python.exe -m pip install --no-deps lazy_loader
-python.exe -m pip install --no-deps tifffile
-python.exe -m pip install --no-deps scipy
-python.exe -m pip install --no-deps scikit-image
-
-#----------------------------------------------------
-Comfyui 기본 설치에 해당하는 torch, torchvision, torchAudio는 당연히 설치했을거라 제외했습니다.
-위 패키지들은 BGRemover에서 주로 사용하는 안전한 최소 의존성입니다.
-로드시 작동 불가가 나오는 것만 추가설치하세요.
-위 의존성 이후의 추가설치는 선택 사항이며, 대부분의 기능은 기본 상태에서도 작동합니다.
+python.exe -m pip install --no-deps numpy(포터블은 할 필요가 없음.)  
+python.exe -m pip install --no-deps pillow  
+python.exe -m pip install --no-deps opencv-python  
+python.exe -m pip install --no-deps torch(포터블은 할 필요가 없음.)  
+python.exe -m pip install --no-deps torchvision(포터블은 할 필요가 없음.)  
+python.exe -m pip install --no-deps lazy_loader  
+python.exe -m pip install --no-deps tifffile  
+python.exe -m pip install --no-deps scipy  
+python.exe -m pip install --no-deps scikit-image  
+  
+#----------------------------------------------------  
+Comfyui 기본 설치에 해당하는 torch, torchvision, torchAudio는 당연히 설치했을거라 제외했습니다.  
+위 패키지들은 BGRemover에서 주로 사용하는 안전한 최소 의존성입니다.  
+로드시 작동 불가가 나오는 것만 추가설치하세요.  
+위 의존성 이후의 추가설치는 선택 사항이며, 대부분의 기능은 기본 상태에서도 작동합니다.  
 
 
 
@@ -260,105 +260,106 @@ BGRemoverMaskAmplier          마스크 증폭기
 ------------
 # Original U²Net recommended requirements (reference only)
 ------------
-numpy
-scikit-image
-torch
-torchvision
-pillow
-opencv-python
-gradio
-gradio_client
-httpx
-opt_einsum
-colorlog
-rarfile
-paddlepaddle
-paddlehub
-paddlenlp
-aistudio-sdk
-decorator
+numpy  
+scikit-image  
+torch  
+torchvision  
+pillow  
+opencv-python  
+gradio  
+gradio_client  
+httpx  
+opt_einsum  
+colorlog  
+rarfile  
+paddlepaddle  
+paddlehub  
+paddlenlp  
+aistudio-sdk  
+decorator  
 
 --------------
-참고 사항으로 가져왔습니다. 
-이 리스트는 원본 U²Net 레포지토리에서 권장된 의존성입니다. 
-BGRemover는 Torch 기반으로 동작하므로 실제 필수 의존성은 최소 리스트만 필요합니다.
+참고 사항으로 가져왔습니다.  
+이 리스트는 원본 U²Net 레포지토리에서 권장된 의존성입니다.  
+BGRemover는 Torch 기반으로 동작하므로 실제 필수 의존성은 최소 리스트만 필요합니다.  
 
-###requirements.txt가 비어 있는 이유###
-ComfyUI는 확장팩 로딩 시 requirements.txt를 자동 설치합니다.
-그러나 pip나 git을 통한 원격설치 방식은 환경 손상 위험이 매우 높기 때문에,
-requirements.txt를 빈 파일로 유지합니다.
+###requirements.txt가 비어 있는 이유###  
+ComfyUI는 확장팩 로딩 시 requirements.txt를 자동 설치합니다.  
+그러나 pip나 git을 통한 원격설치 방식은 환경 손상 위험이 매우 높기 때문에,  
+requirements.txt를 빈 파일로 유지합니다.  
 
-대신, 다음의 코드로 의존성 설치법을 남깁니다:
-의존성 풀 인스톨 리스트
-(U-Net 원본의 의존성 요구 사항입니다. 
- BGRemover는 원본급의 의존성이 아니라 이 설치법방법 이후에 있는 최소한의 의존성만 채워도 동작합니다.)
+대신, 다음의 코드로 의존성 설치법을 남깁니다:  
+의존성 풀 인스톨 리스트  
+(U-Net 원본의 의존성 요구 사항입니다.  
+ BGRemover는 원본급의 의존성이 아니라 이 설치 방법 앞에 있는 최소한의 의존성만 채워도 동작합니다.)  
  
-python.exe -m pip install --no-deps numpy
-python.exe -m pip install --no-deps scikit-image
-python.exe -m pip install --no-deps torch
-python.exe -m pip install --no-deps torchvision
-python.exe -m pip install --no-deps pillow
-python.exe -m pip install --no-deps opencv-python
-python.exe -m pip install --no-deps gradio
-python.exe -m pip install --no-deps gradio_client
-python.exe -m pip install --no-deps httpx
-python.exe -m pip install --no-deps opt_einsum
-python.exe -m pip install --no-deps colorlog
-python.exe -m pip install --no-deps rarfile
-python.exe -m pip install --no-deps aistudio-sdk==0.2.6
-python.exe -m pip install --no-deps paddlenlp==2.6.1   
-python.exe -m pip install --no-deps paddlepaddle==2.6.2
-python.exe -m pip install --no-deps paddlehub==2.4.0
-python.exe -m pip install --no-deps decorator
+python.exe -m pip install --no-deps numpy  
+python.exe -m pip install --no-deps scikit-image  
+python.exe -m pip install --no-deps torch  
+python.exe -m pip install --no-deps torchvision  
+python.exe -m pip install --no-deps pillow  
+python.exe -m pip install --no-deps opencv-python  
+python.exe -m pip install --no-deps gradio  
+python.exe -m pip install --no-deps gradio_client  
+python.exe -m pip install --no-deps httpx  
+python.exe -m pip install --no-deps opt_einsum  
+python.exe -m pip install --no-deps colorlog  
+python.exe -m pip install --no-deps rarfile  
+python.exe -m pip install --no-deps aistudio-sdk==0.2.6  
+python.exe -m pip install --no-deps paddlenlp==2.6.1  
+python.exe -m pip install --no-deps paddlepaddle==2.6.2  
+python.exe -m pip install --no-deps paddlehub==2.4.0  
+python.exe -m pip install --no-deps decorator  
 
 -
- 1.의존성 안정 조합(BG Remover계열 전용)
- aistudio-sdk==0.2.6
- paddlenlp==2.6.1
- paddlehub==2.3.x ~ 2.4.x
- paddlepaddle==2.5.x ~ 2.6.x
- protobuf==3.20.3
+ 1.의존성 안정 조합(BG Remover계열 전용)  
+ aistudio-sdk==0.2.6  
+ paddlenlp==2.6.1  
+ paddlehub==2.3.x ~ 2.4.x  
+ paddlepaddle==2.5.x ~ 2.6.x  
+ protobuf==3.20.3  
  
 -
-2.타협안 (최신 유지 + 환경 변수 설정) (코더용)
-최신 protobuf 유지
-실행 전에 환경 변수 설정:
-set PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python
-최신 보안 정책을 유지하면서 충돌을 회피.(성능은 다소 떨어질 수 있음.)
+2.타협안 (최신 유지 + 환경 변수 설정) (코더용)  
+최신 protobuf 유지  
+실행 전에 환경 변수 설정:  
+set PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python  
+최신 보안 정책을 유지하면서 충돌을 회피.(성능은 다소 떨어질 수 있음.)  
 -
-3.protobuf버전 유지로 해결하는 법 (코더/전문개발자용/업데이트시 재수행이 필요할 수 있음)
-- Paddle 내부의 .proto 파일을 최신 protoc >= 3.19.0으로 다시 컴파일하면 
- Descriptor 생성 방식이 최신 규칙에 맞게 바뀝니다. 
- (혹은 paddle 패키지 내의 proto 폴더의 init파일 외 5개의 py파일을 싹 재수정. 
- 수정작업이 파일당 7만자 이상이라 전문개발자용이라는 이유가 여기 있습니다.)
-- 하지만 ComfyUI 내장 파이썬 환경에서 이 작업을 하려면 
-protoc 설치 + Paddle 소스 수정이 필요해서 일반 사용자에게는 부담이 큽니다.
+3.protobuf버전 유지로 해결하는 법 (코더/전문개발자용/업데이트시 재수행이 필요할 수 있음)  
+- Paddle 내부의 .proto 파일을 최신 protoc >= 3.19.0으로 다시 컴파일하면   
+ Descriptor 생성 방식이 최신 규칙에 맞게 바뀝니다.   
+ (혹은 paddle 패키지 내의 proto 폴더의 init파일 외 5개의 py파일을 싹 재수정.   
+ 수정작업이 파일당 7만자 이상이라 전문개발자용이라는 이유가 여기 있습니다.)  
+- 하지만 ComfyUI 내장 파이썬 환경에서 이 작업을 하려면   
+protoc 설치 + Paddle 소스 수정이 필요해서 일반 사용자에게는 부담이 큽니다.  
 
-- protoc 설치
-- 최신 버전(≥ 3.19.0)을 설치해야 합니다.
-- Windows라면 공식 릴리즈 페이지 (github.com in Bing)에서 
-  protoc-<버전>-win64.zip 다운로드 후 PATH에 추가.
-- Paddle 소스 코드 준비
-- 현재 ComfyUI 내장 파이썬에는 wheel 패키지(.whl)로 설치된 Paddle이 있음.
-- .proto 파일은 Paddle 소스 저장소(PaddlePaddle GitHub)나 wheel 내부에 포함.
-- 예: Lib\site-packages\paddle\base\proto\*.proto
-- proto 파일 재컴파일
-- 해당 디렉토리로 이동해서 protoc 실행:
-protoc --python_out=. data_feed.proto
-protoc --python_out=. trainer_desc.proto
-protoc --python_out=. attribute.proto
-- 이렇게 하면 .proto 파일이 최신 규칙에 맞는 _pb2.py 파일로 다시 생성.
-- 기존 파일 교체
-- 새로 생성된 _pb2.py 파일을 paddle\base\proto 디렉토리에 덮어쓰기.
-- ComfyUI 내장 파이썬은 Lib\site-packages\paddle\base\proto 경로에 있음.
-- 테스트
-- ComfyUI 실행 → BGRemover 로드 → protobuf Descriptor 에러가 사라지는지 확인.
+- protoc 설치  
+- 최신 버전(≥ 3.19.0)을 설치해야 합니다.  
+- Windows라면 공식 릴리즈 페이지 (github.com in Bing)에서   
+  protoc-<버전>-win64.zip 다운로드 후 PATH에 추가.  
+- Paddle 소스 코드 준비  
+- 현재 ComfyUI 내장 파이썬에는 wheel 패키지(.whl)로 설치된 Paddle이 있음.  
+- .proto 파일은 Paddle 소스 저장소(PaddlePaddle GitHub)나 wheel 내부에 포함.  
+- 예: Lib\site-packages\paddle\base\proto\*.proto  
+- proto 파일 재컴파일  
+- 해당 디렉토리로 이동해서 protoc 실행:  
+protoc --python_out=. data_feed.proto  
+protoc --python_out=. trainer_desc.proto  
+protoc --python_out=. attribute.proto  
+- 이렇게 하면 .proto 파일이 최신 규칙에 맞는 _pb2.py 파일로 다시 생성.  
+- 기존 파일 교체  
+- 새로 생성된 _pb2.py 파일을 paddle\base\proto 디렉토리에 덮어쓰기.  
+- ComfyUI 내장 파이썬은 Lib\site-packages\paddle\base\proto 경로에 있음.  
+- 테스트  
+- ComfyUI 실행 → BGRemover 로드 → protobuf Descriptor 에러가 사라지는지 확인.  
 
-  주의할 점
-Paddle wheel 패키지를 직접 수정하는 거라, 업데이트나 재설치 시 덮어씌워질 수 있음.
-잘못된 proto 재생성은 Paddle 내부 API와 불일치할 수 있어, 안정성에 위험이 있음.
+  주의할 점  
+Paddle wheel 패키지를 직접 수정하는 거라, 업데이트나 재설치 시 덮어씌워질 수 있음.  
+잘못된 proto 재생성은 Paddle 내부 API와 불일치할 수 있어, 안정성에 위험이 있음.  
 
 ----
 
-#또는 최소 의존성 설치법을 따르세요.
+#또는 최소 의존성 설치법을 따르세요.  
+
 
